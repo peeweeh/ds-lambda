@@ -5,8 +5,9 @@ provider:
   runtime: nodejs4.3
   memorySize: 512
   cfLogs: true
+  profile: trend
 functions:
   isolate:
     handler: handler.isolate
-    events:
-      - sns: ds-automate
+  dscloudwatchlog:
+    handler: dscloudwatch.log
