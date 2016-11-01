@@ -1,0 +1,12 @@
+service: ds-automate
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  memorySize: 512
+  cfLogs: true
+functions:
+  isolate:
+    handler: handler.isolate
+    events:
+      - sns: ds-automate
