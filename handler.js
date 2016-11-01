@@ -27,7 +27,7 @@ exports.isolate = (event, context, callback) => {
               var volumeId = data.BlockDeviceMappings[0].Ebs.VolumeId;
               console.log('Backing Up: '+volumeId); 
               var BackupParams = {
-                 Description: 'Backup for Investigation: '+volumeId, 
+                 Description: 'Backup for Investigation: '+volumeId+' '+instance, 
                  VolumeId: volumeId
              };
              ec2.createSnapshot(BackupParams, function(err, data) {
@@ -38,7 +38,7 @@ exports.isolate = (event, context, callback) => {
                 else   
                 {
                     console.log(data); 
-                    var DeleteParams = {InstanceIds: [ instance ], DryRun: true};
+                    var DeleteParams = {InstanceIds: [ instance ], DryRun: false};
                     ec2.terminateInstances(DeleteParams, function(err, data) {
                        if (err) 
                        {

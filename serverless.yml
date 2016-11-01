@@ -11,3 +11,5 @@ functions:
     handler: handler.isolate
   dscloudwatchlog:
     handler: dscloudwatch.log
+  configrulelog:
+    handler: configrule.log
