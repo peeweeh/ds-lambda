@@ -1,0 +1,2 @@
+### Deploy and Test
+`serverless deploy function --function dscloudwatchlog --stage dev --region ap-southeast-1 && serverless invoke --function dscloudwatchlog --stage dev --region ap-southeast-1 --path sample-data/log.json`
