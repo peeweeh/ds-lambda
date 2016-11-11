@@ -13,3 +13,5 @@ functions:
     handler: dscloudwatch.log
   configrulelog:
     handler: configrule.log
+  cloudwatcheventsdisable:
+    handler: cloudwatchevents.disable
