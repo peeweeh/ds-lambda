@@ -1,17 +1,69 @@
 service: ds-automate
-
 provider:
   name: aws
   runtime: nodejs4.3
   memorySize: 512
   cfLogs: true
   profile: trend
+  stage: beta
+  region: ap-southeast-1
+
 functions:
-  isolate:
-    handler: handler.isolate
-  dscloudwatchlog:
+  autoscalingips:
+    handler: autoscaling.ips
+    environment:
+      HostSecurityPolicyName: Apache_PHP
+      EventType: PayloadLog
+      ActionString: Reset
+      SeverityString: High
+      FunctionName: arn:aws:lambda:ap-southeast-1:650143975734:function:ds-automate-beta-sendsns
+    events:
+      - sns: ds-cloud-10
+  appcontrol:
+    handler: appcontrol.ac
+    environment:
+      HostSecurityPolicyName: Apache_PHP7_App
+      OperationDesc: blocked
+      Action: Execution of Unrecognized Software Blocked
+      SafeSecurityGroup: sg-e52b4682
+      FunctionName: arn:aws:lambda:ap-southeast-1:650143975734:function:ds-automate-beta-sendsns
+    events:
+      - sns: ds-cloud-10
+  ctdlabam:
+    handler: dsam.am
+    environment:
+      HostSecurityPolicyName: EBCWebServer
+      EventType: AntiMalwareEvent
+      ScanResultString: Quarantined
+      MajorVirusTypeString: Suspicious Object
+      SeverityString: High
+      MalwareName: CDF
+      FunctionName: arn:aws:lambda:ap-southeast-1:650143975734:function:ds-automate-beta-sendsns
+    events:
+      - sns: ctdlab-ds10
+  logtocloudwatch:
     handler: dscloudwatch.log
-  configrulelog:
-    handler: configrule.log
-  cloudwatcheventsdisable:
-    handler: cloudwatchevents.disable
+    environment:
+      logGroupName: ds-events
+      logStreamName: main
+    events:
+      - sns: ds-cloud-10
+  cloudtrail:
+    handler: cloudtrail.disable
+    environment:
+      BlockARN: arn:aws:iam::650143975734:policy/SSH
+      FunctionName: arn:aws:lambda:ap-southeast-1:650143975734:function:ds-automate-beta-sendsns
+    events:
+      - sns: ds-cloud-10
+  sendsns:
+    handler: sendsns.sns
+    environment:
+      TopicArn: arn:aws:sns:ap-southeast-1:650143975734:sec-events
+  restrictedssh:
+    handler: restrictedssh.check
+    environment:
+      BlockARN: arn:aws:iam::650143975734:policy/SSH
+      configRuleName: restricted-ssh
+      FunctionName: arn:aws:lambda:ap-southeast-1:650143975734:function:ds-automate-beta-sendsns
+    events:
+      - sns: configrules

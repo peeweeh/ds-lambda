@@ -10,7 +10,7 @@
         "Signature": "EXAMPLE",
         "SigningCertUrl": "EXAMPLE",
         "MessageId": "95df01b4-ee98-5cb9-9903-4c221d41eb5e",
-        "Message": "Delete this Machine",
+        "Message": [{"Action":2,"ActionString":"Reset","ApplicationType":"Web Application PHP Based","DestinationIP":"10.0.8.111","DestinationMAC":"02:D9:1C:A5:47:F3","DestinationPort":80,"Direction":0,"DirectionString":"Incoming","DriverTime":1485418210133506,"EventID":14,"EventType":"PayloadLog","Flags":"ACK PSH DF\\u003d1","Flow":0,"FlowString":"Connection Flow","Frame":2048,"FrameString":"IP","HostAgentVersion":"10.0.0.2043","HostAssetValue":1,"HostCloudType":"amazon","HostGroupID":146,"HostGroupName":"Public Subnet B (subnet-dfafd0bb)","HostID":813,"HostInstanceID":"i-00fd6f303d3b1fc70","HostOS":"Amazon Linux (64 bit) (4.4.35-33.55.amzn1.x86_64)","HostSecurityPolicyID":401,"HostSecurityPolicyName":"DSCloudWebsite","Hostname":"ec2-54-254-222-160.ap-southeast-1.compute.amazonaws.com (dscloud-prod) [i-00fd6f303d3b1fc70]","IPDatagramLength":0,"Interface":"","LogDate":"2017-01-26T08:10:10.133Z","Origin":0,"OriginString":"Agent","PacketData":"","PayloadFlags":0,"PosInBuffer":0,"PosInStream":0,"Protocol":6,"ProtocolString":"TCP","Rank":50,"Reason":"1004998 - PHP-CGI Query String Parameter Vulnerability","RepeatCount":1,"Severity":3,"SeverityString":"High","SourceIP":"10.0.1.173","SourceMAC":"02:0B:21:07:E7:CF","SourcePort":4287,"Status":-1,"Tags":"","TenantID":0,"TenantName":"Primary"}]',
         "MessageAttributes": {
           "Test": {
             "Type": "String",
