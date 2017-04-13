@@ -1,0 +1,5 @@
+{
+	"instance":"i-0544a98dad67555b2",
+	"aspolicy":"ScaleUp",
+	"asg":"BryceCluster"
+}
